@@ -18,7 +18,7 @@
 
 ---
 
-## 🏭 Other Vendors Apart from Cisco
+#### 🏭 Other Vendors Apart from Cisco
 Many companies manufacture routers, such as:
 ```py
 - Nortel
