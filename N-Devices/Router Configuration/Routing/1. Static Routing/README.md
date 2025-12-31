@@ -37,7 +37,9 @@ Router(config)# ip route <Destination Network ID> <Destination Subnet Mask> <Exi
 ```
 ---
 <img src="img/1.png">
----
+
+s---
+
 ### R1 ON HYD :
 ```py
 HYD # config terminal
