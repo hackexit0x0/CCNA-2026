@@ -1,39 +1,110 @@
-# --------- SWITCH 1 -------------
+### Vlan Network & DHCP
+
+<img src="img/lab2.png">
+
+### ---------------- L2 SWITCH -------------------------
 
 ```py
+vlan 10
+ name VLAN10
+exit
 
-SW-1(config)#interface range fastEthernet 0/1 - 5
-SW-1(config-if-range)#switchport access vlan 10
-% Access VLAN does not exist. Creating vlan 10
-SW-1(config-if-range)#exit
+vlan 20
+ name VLAN20
+exit
 
-SW-1(config)#interface range fastEthernet 0/6 - 10
-SW-1(config-if-range)#switchport access vlan 20
-% Access VLAN does not exist. Creating vlan 20
-SW-1(config-if-range)#exit
+vlan 30
+ name VLAN30
+exit
 
-SW-1(config)#interface range fastEthernet 0/11 - 15
-SW-1(config-if-range)#switchport access vlan 30
-% Access VLAN does not exist. Creating vlan 30
+interface range fa0/1 - 5
+ switchport mode access
+ switchport access vlan 10
+exit
+
+interface range fa0/6 - 10
+ switchport mode access
+ switchport access vlan 20
+exit
+
+interface range fa0/11 - 15
+ switchport mode access
+ switchport access vlan 30
+exit
+
+interface fa0/24
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20,30
+exit
+```
+
+### ----------------L3 CORE SWITCH -------------------------
+```py
+ip routing
+
+vlan 10
+ name VLAN10
+exit
+
+vlan 20
+ name VLAN20
+exit
+
+vlan 30
+ name VLAN30
+exit
+
+interface vlan 10
+ ip address 192.168.10.1 255.255.255.0
+ no shutdown
+exit
+
+interface vlan 20
+ ip address 192.168.20.1 255.255.255.0
+ no shutdown
+exit
+
+interface vlan 30
+ ip address 192.168.30.1 255.255.255.0
+ no shutdown
+exit
+
+interface fa0/1
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20,30
+exit
+
+ip address 172.16.0.1 255.255.0.0
+
+int vlan 10 
+ip helper-address 172.16.0.2
+no sh
+
+int vlan 20
+ip helper-address 172.16.0.2
+no sh
+
+int vlan 30
+ip helper-address 172.16.0.2
+no sh
+
+end
+write memory
+
 ```
 
 
-### CORE SWITCH
-```py
-CORE-SW-1(config)#vlan 10
-CORE-SW-1(config-vlan)#name HR
-CORE-SW-1(config-vlan)#exit
 
-CORE-SW-1(config)#vlan 20
-CORE-SW-1(config-vlan)#name FIN
-CORE-SW-1(config-vlan)#exit
 
-CORE-SW-1(config)#vlan 30
-CORE-SW-1(config-vlan)#name Sales
-CORE-SW-1(config-vlan)#exit
 
-CORE-SW-1(config)#interface fastEthernet 0/1
-CORE-SW-1(config-if)#switchport mode access 
-CORE-SW-1(config-if)#switchport access vlan 10
-%CDP-4-NATIVE_VLAN_MISMATCH: Native VLAN mismatch discovered on FastEthernet0/1 (10), with SW-1 FastEthernet0/24 (1).
-```
+
+
+
+
+
+
+
+
+
+
+

@@ -41,7 +41,7 @@ switchport access vlan 30
 ## vlan access & ip assing vlan in ip address
 # VLAN 10
 interface fastEthernet 0/1
-switchport  VLAmode access
+switchport  mode access
 switchport access vlan 10
 
 interface vlan 10
@@ -55,6 +55,7 @@ switchport access vlan 20
 
 interface vlan 20
 ip address 192.168.20.1 255.255.255.0
+no sh
 
 ## vlan access & ip assing vlan in ip address
 # VLAN 30
@@ -68,7 +69,7 @@ ip address 192.168.30.1 255.255.255.0
 
 # DHCP helper
 CORE-SW-1(config)#interface vlan 10
-CORE-SW-1(config-if)#ip helper-address 172.168.0.2
+CORE-SW-1(config-if)#ip helper-address 172.16.0.2
 
 
 ## vlan 10
