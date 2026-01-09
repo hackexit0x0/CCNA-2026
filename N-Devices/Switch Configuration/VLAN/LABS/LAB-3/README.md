@@ -95,6 +95,30 @@ no shutdown
 exit
 ```
 
+> L3 Vlan Add ip address
+```py
+int vlan 10
+ip helper-address 172.16.0.2
+no shutdown 
+
+int vlan 20
+ip helper-address 172.16.0.2
+no shutdown 
+
+int vlan 30
+ip helper-address 172.16.0.2
+no shutdown 
+
+
+
+```
+
+> Add DHCP helper-address
+```py
+int vlan 10
+ip 
+```
+
 > 🔍 Verify
 On both switches:
 ```py
