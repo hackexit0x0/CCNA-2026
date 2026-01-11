@@ -1,5 +1,10 @@
 ### Inter-VLAN Routing Using Router (Router-on-a-Stick)
+---
+
 <img src="img/inter-vlan.png">
+
+---
+
 #### 🔹 Step 1: Configure Trunk on Switch
 ```py
 Switch(config)# interface fa0/24
