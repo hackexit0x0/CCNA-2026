@@ -2,11 +2,7 @@
 
 #### 🔹 What is STP?
 
-
-
-#### 🔗 **Watch Video:**  
-
-+ <a href="https://youtu.be/aIG38PMoSBA?si=jbP_D-e9fwdM75Qe">https://youtu.be/aIG38PMoSBA?si=jbP_D-e9fwdM75Qe</a>
+https://youtu.be/aIG38PMoSBA?si=jbP_D-e9fwdM75Qe
 
 > **Spanning Tree Protocol (STP)** is a **Layer 2 protocol** that prevents network loops in Ethernet networks by blocking redundant paths.
 
