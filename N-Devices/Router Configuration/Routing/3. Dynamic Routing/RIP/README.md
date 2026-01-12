@@ -18,7 +18,7 @@
 
 > Invalid timer : `180 sec`
 >   + Time a router waits to hear updates
->   + The route is marked unreachable if there is no update during this interval.\
+>   + The route is marked unreachable if there is no update during this interval.
 
 > Flush timer : `240 sec`
 >   + Time before the invalid route is purged from the routing table

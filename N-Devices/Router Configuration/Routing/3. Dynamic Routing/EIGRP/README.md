@@ -29,6 +29,46 @@ What is EIGRP?
 ### Disadvantages of EIGRP
 • Works only on Cisco Routers
 
+**Key Points**
+
+* Cisco-based (partially open)
+* Classless
+* Uses DUAL algorithm
+* Multicast: 224.0.0.10
+
+**Advantages**
+
+* Very fast convergence
+* Easy configuration
+* Scalable
+
+**Disadvantages**
+
+* Mostly Cisco environments
+* Higher resource usage than RIP
+
+
+### Command
+```py
+Router> enable
+Router# configure terminal
+Router(config)# router eigrp 100
+Router(config-router)# network 192.168.1.0 0.0.0.255
+Router(config-router)# network 10.0.0.0
+Router(config-router)# no auto-summary
+Router(config-router)# exit
+Router(config)# exit
+
+### 100 is the Autonomous System (AS) number and must match on all EIGRP routers.
+
+### Verification Commands
+show ip eigrp neighbors
+show ip route eigrp
+show ip protocols
+```
+---
+
+
 > Configuring EIGRP
 ```py
 Router(config)# router eigrp <as no>
