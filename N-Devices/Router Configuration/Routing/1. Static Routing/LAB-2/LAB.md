@@ -1,6 +1,6 @@
 ### LAB 
 
-<img src="img/2.png">
+<img src="2.png">
 
 > SITE R1 ON HYD :
 ```py

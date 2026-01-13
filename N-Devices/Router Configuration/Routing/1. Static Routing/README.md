@@ -36,9 +36,8 @@ Or
 Router(config)# ip route <Destination Network ID> <Destination Subnet Mask> <Exit interface type><interface number>
 ```
 ---
-<img src="img/1.png">
+<img src="img-lab/1.png">
 
-s---
 
 ### R1 ON HYD :
 ```py
