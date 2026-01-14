@@ -8,6 +8,8 @@ The lab is ideal for:
 - GNS3 / Packet Tracer routing labs
 - Interview preparation
 
+<img src="image.png">
+
 ---
 
 ## 🧩 Network Topology
