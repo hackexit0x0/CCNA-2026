@@ -29,6 +29,22 @@
 
 ---
 
+✅ Router0 Configuration
+```py
+Router0> enable
+Router0# configure terminal
+
+Router0(config)# router rip
+# Router0(config-router)# version 2 ## Used for RIP-2
+Router0(config-router)# no auto-summary
+
+Router0(config-router)# network 192.168.10.0
+Router0(config-router)# network 10.0.0.0
+
+Router0(config-router)# exit
+Router0(config)# exit
+```
+
 ### Configuring RIP v1
 ```py
 Router(config)# router rip
