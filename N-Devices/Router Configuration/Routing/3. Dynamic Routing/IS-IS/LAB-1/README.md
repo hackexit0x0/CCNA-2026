@@ -160,3 +160,15 @@ show ip route isis       # View routes learned via IS-IS
 
 ---
 
+## NOTE:
+```py
+Use one of these routers:
+
+Router Model	        IS-IS Support
+❌ Router-PT-Empty	   NO
+❌ 1841	               NO
+❌ 2811                 NO
+✅ 2911 (with advanced image)	YES (sometimes)
+✅ CSR1000v (GNS3)	    YES
+✅ 7200 (GNS3)	       YES
+```
