@@ -83,5 +83,7 @@ BLOCK_SIZE = 64             # Increment in 4th octet
 
 # Subnet 3
 # Network   : 192.168.1.128/26
-# First IP
+# First IP  : 192.168.1.129
+# Last IP   : 192.168.1.190
+
 ```
