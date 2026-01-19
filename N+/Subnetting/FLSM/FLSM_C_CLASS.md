@@ -85,5 +85,16 @@ BLOCK_SIZE = 64             # Increment in 4th octet
 # Network   : 192.168.1.128/26
 # First IP  : 192.168.1.129
 # Last IP   : 192.168.1.190
+# Broadcast : 192.168.1.191
+
+# Subnet 4
+# Network   : 192.168.1.192/26
+# First IP  : 192.168.1.193
+# Last IP   : 192.168.1.254
+# Broadcast : 192.168.1.255
+
+
+
+
 
 ```
