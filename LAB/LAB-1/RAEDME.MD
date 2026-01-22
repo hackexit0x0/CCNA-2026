@@ -163,7 +163,88 @@ exit
 interface gigabitEthernet 0/1
 switchport mode trunk 
 
+```
+## ISP ROUTERS
+
+```py
+        ISP PMS                     ISP PSS
+     (Public ISP)               (Public ISP)
+        |                           |
+   203.0.113.1/30             198.51.100.1/30
+        |                           |
+        |                           |
+     G0/0                        G1/0
+        \                         /
+         \                       /
+           Office Router (S-GW)
+                G4/0
+          LAN: 10.1.50.0/24
+          GW : 10.1.50.1
+
+| ISP     | Network         | Router IP    | Office IP    |
+| ------- | --------------- | ------------ | ------------ |
+| ISP PMS | 203.0.113.0/30  | 203.0.113.1  | 203.0.113.2  |
+| ISP PSS | 198.51.100.0/30 | 198.51.100.1 | 198.51.100.2 |
 
 
+## ISP PMS Router
 
+enable
+configure terminal
+
+interface gigabitEthernet0/0
+ ip address 203.0.113.1 255.255.255.252
+ no shutdown
+
+
+## ISP PSS Router
+enable
+configure terminal
+
+interface gigabitEthernet0/0
+ ip address 198.51.100.1 255.255.255.252
+ no shutdown
+
+## Office Router – WAN Interfaces
+
+### 🔹 ISP PMS (Primary)
+enable
+configure terminal
+
+interface gigabitEthernet0/0
+ ip address 203.0.113.2 255.255.255.252
+ no shutdown
+
+### 🔹 ISP PSS (Backup)
+interface gigabitEthernet1/0
+ ip address 198.51.100.2 255.255.255.252
+ no shutdown
+
+ ✔ Green light = interface UP
+🟡 Yellow = still negotiating (wait 5–10 sec)
+
+## Default Routes (MOST IMPORTANT) NOT SUPRTED ROUTER
+# Primary Route (ISP PMS)
+ip route 0.0.0.0 0.0.0.0 203.0.113.1
+
+# ✔ Backup Route (ISP PSS)
+ip route 0.0.0.0 0.0.0.0 198.51.100.1 10
+
+## 🧩 CORRECT IP SLA CONFIG (USING ISP GATEWAY)
+
+## 🔹 Primary ISP (PMS)
+ip sla 1
+ icmp-echo 203.0.113.1 source-interface gigabitEthernet0/0
+ frequency 5
+ip sla schedule 1 life forever start-time now
+
+track 1 ip sla 1 reachability
+
+ip route 0.0.0.0 0.0.0.0 203.0.113.1 track 1
+
+## 🔹 Backup ISP (PSS) – Optional Monitoring
+ip sla 2
+ icmp-echo 198.51.100.1 source-interface gigabitEthernet1/0
+ frequency 5
+ip sla schedule 2 life forever start-time now
 ```
