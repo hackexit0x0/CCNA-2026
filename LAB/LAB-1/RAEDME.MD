@@ -231,7 +231,7 @@ ip route 0.0.0.0 0.0.0.0 203.0.113.1
 ip route 0.0.0.0 0.0.0.0 198.51.100.1 10
 
 ## 🧩 CORRECT IP SLA CONFIG (USING ISP GATEWAY)
-
+----------------------------------------------------
 ## 🔹 Primary ISP (PMS)
 ip sla 1
  icmp-echo 203.0.113.1 source-interface gigabitEthernet0/0
@@ -247,4 +247,41 @@ ip sla 2
  icmp-echo 198.51.100.1 source-interface gigabitEthernet1/0
  frequency 5
 ip sla schedule 2 life forever start-time now
+
+-------------------------------------------------------
+
+
+## VLAN ACL 
+! ACLs
+! VLAN 10 - Full Access
+ip access-list extended VLAN10-ACL
+ permit ip 10.10.10.0 0.0.0.255 any
+
+! VLAN 20 - Intranet Only
+ip access-list extended VLAN20-ACL
+ permit ip 10.10.20.0 0.0.0.255 172.16.0.3 0.0.0.0
+ deny ip 10.10.20.0 0.0.0.255 any
+
+! VLAN 30 - Intranet + Internet
+ip access-list extended VLAN30-ACL
+ permit ip 10.10.30.0 0.0.0.255 172.16.0.3 0.0.0.0
+ permit ip 10.10.30.0 0.0.0.255 any
+
+! VLAN 40 - Web + Internet Only (No Intranet)
+ip access-list extended VLAN40-ACL
+ permit tcp 10.10.40.0 0.0.0.255 any eq 80
+ permit tcp 10.10.40.0 0.0.0.255 any eq 443
+ permit ip 10.10.40.0 0.0.0.255 any
+ deny ip 10.10.40.0 0.0.0.255 172.16.0.3 0.0.0.0
+
+! Apply ACLs to VLAN interfaces
+interface Vlan10
+ ip access-group VLAN10-ACL in
+interface Vlan20
+ ip access-group VLAN20-ACL in
+interface Vlan30
+ ip access-group VLAN30-ACL in
+interface Vlan40
+ ip access-group VLAN40-ACL in
+
 ```
