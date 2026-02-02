@@ -1,0 +1,90 @@
+Below is a FULL & CLEAN VLAN COMMAND SECTION for Alcatel OmniSwitch covering:
+
+✅ Create VLAN
+✅ Access Port
+✅ Trunk (Tagged) Port
+✅ Inter-VLAN Routing (SVI)
+✅ Verification Commands
+
+You can paste this directly into README.md.
+
+## 🔹 VLAN Commands (Create, Access, Trunk, Inter-VLAN)
+
+---
+
+### ✅ Create VLAN
+```bash
+vlan 10                  # Create VLAN 10
+vlan 20                  # Create VLAN 20
+vlan 30                  # Create VLAN 30
+
+vlan 10 name STAFF       # Name VLAN 10 as STAFF
+vlan 20 name STUDENT     # Name VLAN 20 as STUDENT
+vlan 30 name SERVER      # Name VLAN 30 as SERVER
+
+✅ Access Port Configuration (Untagged)
+interfaces ethernet 1/1
+vlan participation include 10     # Assign port to VLAN 10
+vlan participation exclude 1      # Remove default VLAN
+
+interfaces ethernet 1/2
+vlan participation include 20     # Assign port to VLAN 20
+vlan participation exclude 1
+
+✅ Trunk Port Configuration (Tagged)
+interfaces ethernet 1/24
+vlan participation include 10,20,30     # Allow VLANs on trunk
+vlan participation tagging 10,20,30     # Tag VLAN traffic
+vlan participation exclude 1            # Remove default VLAN
+
+✅ Native VLAN (Untagged on Trunk – Optional)
+interfaces ethernet 1/24
+vlan participation include 99           # Native VLAN
+vlan participation untagged 99
+
+✅ Inter-VLAN Routing (Layer-3 Switch)
+ip routing                              # Enable routing
+
+ip interface vlan 10
+address 10.10.10.1 mask 255.255.255.0   # Gateway for VLAN 10
+
+ip interface vlan 20
+address 10.10.20.1 mask 255.255.255.0   # Gateway for VLAN 20
+
+ip interface vlan 30
+address 10.10.30.1 mask 255.255.255.0   # Gateway for VLAN 30
+
+✅ DHCP (Optional – Per VLAN)
+ip dhcp pool VLAN10
+network 10.10.10.0 255.255.255.0
+default-router 10.10.10.1
+dns-server 8.8.8.8
+
+ip dhcp pool VLAN20
+network 10.10.20.0 255.255.255.0
+default-router 10.10.20.1
+dns-server 8.8.8.8
+
+✅ Verification / Show Commands
+show vlan                           # Show all VLANs
+show vlan 10                        # VLAN 10 details
+show interfaces status              # Port status
+show ip interface                   # SVI status
+show ip routes                      # Routing table
+show mac-address-table vlan 10      # MAC addresses per VLAN
+
+✅ Remove / Modify VLAN
+no vlan 30                          # Delete VLAN 30
+
+interfaces ethernet 1/1
+vlan participation exclude 10       # Remove VLAN from port
+
+📌 Important Notes
+
+Access port → One VLAN (untagged)
+
+Trunk port → Multiple VLANs (tagged)
+
+Inter-VLAN routing requires ip routing
+
+Always exclude VLAN 1 for security best practice
