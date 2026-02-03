@@ -27,7 +27,7 @@ reload                      # Reboot switch
 show interfaces             # Show all ports status
 show interfaces port 1/1/1  # Specific port info
 
-Enable / Disable Port
+# Enable / Disable Port
 interfaces port 1/1/1 admin up
 interfaces port 1/1/1 admin down
 ```
