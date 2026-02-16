@@ -1,5 +1,4 @@
-## DHCP Snooping
-
+### 1. DHCP Snooping
 > DHCP Snooping is a **Layer 2 security feature** that protects the network from **rogue DHCP servers**.
 
 ### Key Functions
@@ -9,7 +8,7 @@
   - Rogue DHCP servers
   - DHCP starvation attacks
 
-### How It Works
+#### How It Works
 - Switch ports are classified as:
   - **Trusted**: Connected to legitimate DHCP servers
   - **Untrusted**: Connected to clients
@@ -32,7 +31,7 @@ interface GigabitEthernet0/2
  ip dhcp snooping limit rate 10
 ```
 
-### DHCP Snooping Binding Table
+### 1.1 DHCP Snooping Binding Table
 The switch builds a table containing:
 - MAC address
 - IP address
@@ -50,14 +49,14 @@ show ip dhcp snooping binding
 ```
 
 
-### Benefits
+#### Benefits
 - Enhances network security
 - Prevents unauthorized IP assignment
 - Improves trust in DHCP operations
 
 ---
 
-## DHCP Option 82 (Relay Agent Information Option)
+## 2. DHCP Option 82 (Relay Agent Information Option)
 
 DHCP Option 82 adds extra information to DHCP requests to help identify the **client’s location** in the network.
 
@@ -98,16 +97,15 @@ interface GigabitEthernet0/1
 
 ---
 
-## DHCP Relay (Layer 3 Switches)
+## 3. DHCP Relay (Layer 3 Switches)
+> DHCP Relay allows DHCP clients and servers to communicate **across different subnets**.
 
-DHCP Relay allows DHCP clients and servers to communicate **across different subnets**.
-
-### Why DHCP Relay Is Needed
+#### Why DHCP Relay Is Needed
 - DHCP uses broadcast messages
 - Routers do **not forward broadcasts** by default
 - Relay converts broadcasts into unicasts
 
-### How It Works
+#### How It Works
 1. Client sends DHCP **DISCOVER** (broadcast)
 2. Layer 3 switch/router:
    - Receives the broadcast
@@ -128,11 +126,11 @@ interface GigabitEthernet0/0
 
 ```
 
-### Common Configuration Concept
+#### Common Configuration Concept
 - Uses an **IP helper address**
 - Configured on the VLAN or routed interface
 
-### Benefits
+#### Benefits
 - Centralized DHCP servers
 - Reduced administrative overhead
 - Scalable enterprise network design

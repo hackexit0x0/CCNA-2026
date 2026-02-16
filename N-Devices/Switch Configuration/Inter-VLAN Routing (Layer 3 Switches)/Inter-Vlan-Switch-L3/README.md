@@ -1,5 +1,6 @@
 #### ✅ METHOD 1: Inter-VLAN Routing Using **Layer 3 Switch**
 
+
 #### 🔹 Step 1: Create VLANs
 
 ```py
@@ -10,7 +11,7 @@ Switch(config)# vlan 10
 Switch(config)# vlan 20
 Switch(config)# vlan 30
 ```
-####🔹 Step 2: Create VLAN Interfaces (SVIs)
+#### 🔹 Step 2: Create VLAN Interfaces (SVIs)
 ```py
 # Create SVI for VLAN 10
 Switch(config)# interface vlan 10
